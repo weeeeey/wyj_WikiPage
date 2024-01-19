@@ -16,9 +16,10 @@ model Profile {
   name String
   imageUrl String 
   email String 
+  likeIds    String[]  @db.ObjectId
 
   Contents Content[]
-
+  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -32,6 +33,8 @@ model Content {
   profileId String @db.ObjectId
   profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
+  likeCount Int @default(0) 
+  
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

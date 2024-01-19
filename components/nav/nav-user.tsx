@@ -1,4 +1,4 @@
-import getCurrentProfile from '@/lib/getCurrentProfile';
+import getCurrentProfile from '@/actions/getCurrentProfile';
 import { SignInButton, UserButton } from '@clerk/nextjs';
 import React from 'react';
 

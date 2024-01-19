@@ -35,7 +35,7 @@ export default function RootLayout({
             <html lang="en">
                 <body className={cn('bg-slate-200', inter.className)}>
                     <Navbar />
-                    <main className="mx-20">{children}</main>
+                    <main className="mx-20 mt-10">{children}</main>
                     <Toaster />
                 </body>
             </html>
