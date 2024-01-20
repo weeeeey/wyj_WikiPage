@@ -19,7 +19,11 @@ export const NavUser = async () => {
                     }}
                 />
             ) : (
-                <SignInButton>로그인</SignInButton>
+                <SignInButton>
+                    <div className="bg-white px-4 py-2 rounded-md text-sm">
+                        로그인
+                    </div>
+                </SignInButton>
             )}
         </>
     );

@@ -1,35 +1,19 @@
-'use client';
+import getContents from '@/actions/getContents';
+import { TableBody } from '@/components/ui/table';
+import { ContentRow } from './content-row';
 
-import { TableBody, TableCell, TableRow } from '@/components/ui/table';
-import { SafeContent } from '@/types';
+export const ContentBody = async () => {
+    const contents = await getContents();
 
-interface ContentBodyProps {
-    contents: SafeContent[] | undefined;
-}
-
-export const ContentBody = ({ contents }: ContentBodyProps) => {
     return (
         <TableBody>
-            <TableRow className="shadow-md">
-                <TableCell className="text-xs">1</TableCell>
-                <TableCell>Paid</TableCell>
-            </TableRow>
-            <TableRow className="shadow-md">
-                <TableCell className="text-xs">2</TableCell>
-                <TableCell>Paid</TableCell>
-            </TableRow>
-            <TableRow className="shadow-md">
-                <TableCell className="text-xs">3</TableCell>
-                <TableCell>Paid</TableCell>
-            </TableRow>
-            <TableRow className="shadow-md">
-                <TableCell className="text-xs">4</TableCell>
-                <TableCell>Paid</TableCell>
-            </TableRow>
-            <TableRow className="shadow-md">
-                <TableCell className="text-xs">5</TableCell>
-                <TableCell>Paid</TableCell>
-            </TableRow>
+            {contents?.map((content) => (
+                <ContentRow
+                    key={content.id}
+                    id={content.id}
+                    title={content.title}
+                />
+            ))}
         </TableBody>
     );
 };
