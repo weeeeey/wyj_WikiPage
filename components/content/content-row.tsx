@@ -11,9 +11,11 @@ export const ContentRow = ({ id: contentId, title }: SafeContent) => {
         router.push(`/${contentId}`);
     };
     return (
-        <TableRow className="shadow-md" onClick={onClick}>
+        <TableRow className="shadow-md">
             <TableCell className="text-xs">{contentId.slice(0, 2)}</TableCell>
-            <TableCell>{title}</TableCell>
+            <TableCell className="cursor-pointer" onClick={onClick}>
+                {title}
+            </TableCell>
         </TableRow>
     );
 };

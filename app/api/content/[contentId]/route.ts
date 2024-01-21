@@ -2,24 +2,6 @@ import getCurrentProfile from '@/actions/getCurrentProfile';
 import { db } from '@/lib/db';
 import { NextResponse } from 'next/server';
 
-export async function GET({ params }: { params: { contentId: string } }) {
-    try {
-        const { contentId } = params;
-        if (!contentId) {
-            return new NextResponse('invalid data', { status: 400 });
-        }
-        const content = await db.content.findUnique({
-            where: {
-                id: contentId,
-            },
-        });
-        return NextResponse.json(content);
-    } catch (error) {
-        console.log('CONTENT_GET_ERROR', error);
-        return new NextResponse('Internal_error', { status: 500 });
-    }
-}
-
 export async function PUT(
     req: Request,
     { params }: { params: { contentId: string } }
@@ -49,7 +31,10 @@ export async function PUT(
     }
 }
 
-export async function DELETE({ params }: { params: { contentId: string } }) {
+export async function DELETE(
+    req: Request,
+    { params }: { params: { contentId: string } }
+) {
     try {
         const { contentId } = params;
         const profile = await getCurrentProfile();

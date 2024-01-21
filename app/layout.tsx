@@ -8,6 +8,7 @@ import { Toaster } from '@/components/ui/toaster';
 
 import { Navbar } from '@/components/nav/navbar';
 import { cn } from '@/lib/utils';
+import ToasterProvider from '@/lib/ToasterProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -34,9 +35,9 @@ export default function RootLayout({
         <ClerkProvider>
             <html lang="en">
                 <body className={cn('bg-slate-200', inter.className)}>
+                    <ToasterProvider />
                     <Navbar />
                     <main className="max-w-3xl mx-auto mt-20 ">{children}</main>
-                    <Toaster />
                 </body>
             </html>
         </ClerkProvider>
