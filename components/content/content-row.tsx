@@ -4,7 +4,7 @@ import { TableCell, TableRow } from '@/components/ui/table';
 import { SafeContent } from '@/types';
 import { useRouter } from 'next/navigation';
 
-export const ContentRow = ({ id: contentId, title }: SafeContent) => {
+export const ContentRow = ({ id, contentId, title }: SafeContent) => {
     const router = useRouter();
 
     const onClick = () => {
@@ -12,7 +12,7 @@ export const ContentRow = ({ id: contentId, title }: SafeContent) => {
     };
     return (
         <TableRow className="shadow-md">
-            <TableCell className="text-xs">{contentId.slice(0, 2)}</TableCell>
+            <TableCell className="text-xs">{id}</TableCell>
             <TableCell className="cursor-pointer" onClick={onClick}>
                 {title}
             </TableCell>

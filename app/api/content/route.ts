@@ -1,9 +1,9 @@
 import { db } from '@/lib/db';
-import axios from 'axios';
+import { NextResponse } from 'next/server';
 
-const getContents = async () => {
+export async function GET(req: Request) {
     try {
-        const res = await db.content.findMany({
+        const contents = await db.content.findMany({
             select: {
                 id: true,
                 title: true,
@@ -12,10 +12,9 @@ const getContents = async () => {
                 createdAt: 'desc',
             },
         });
-        return res;
+        return NextResponse.json(contents);
     } catch (error) {
         console.log(error);
+        return new NextResponse('Internal Error', { status: 500 });
     }
-};
-
-export default getContents;
+}

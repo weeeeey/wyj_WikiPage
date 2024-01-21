@@ -2,7 +2,7 @@
 import { UploadEditor } from '@/components/upload/upload-editor';
 import axios from 'axios';
 import { EditorState, convertToRaw } from 'draft-js';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -20,9 +20,6 @@ const UploadContent = () => {
         };
     }, []);
 
-    const updateTextDescription = async (state: EditorState) => {
-        await setEditorState(state);
-    };
     const updataTitle = (data: string) => {
         setTitle(data);
     };
@@ -36,9 +33,9 @@ const UploadContent = () => {
                 text,
             });
             if (res.status === 200) {
-                router.refresh();
                 router.push(`/${res.data.id}`);
                 toast.success('Success post');
+                router.refresh();
             }
         } catch (error) {
             console.log(error);

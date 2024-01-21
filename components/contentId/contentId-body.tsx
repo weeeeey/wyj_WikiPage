@@ -13,10 +13,10 @@ export const ContentIdBody = ({ text }: ContentIdBody) => {
     useEffect(() => {
         const markup = draftToHtml(text);
         setHtmlString(markup);
-    }, []);
+    }, [text]);
 
     return (
-        <div>
+        <div className="p-2">
             <div dangerouslySetInnerHTML={{ __html: htmlString }} />
         </div>
     );

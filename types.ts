@@ -1,4 +1,5 @@
 export interface SafeContent {
-    id: string;
+    id: number;
+    contentId: string;
     title: string;
 }

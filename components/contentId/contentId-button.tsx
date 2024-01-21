@@ -20,8 +20,8 @@ export const ContentIdButton = ({ contentId, isAdmin }: ContentIdButton) => {
             const res = await axios.delete(`/api/content/${contentId}`);
             if (res.status === 200) {
                 toast.success('Deleted', { position: 'top-center' });
-                router.refresh();
                 router.push('/');
+                router.refresh();
             }
         } catch (error) {
             console.log(error);
