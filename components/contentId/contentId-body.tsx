@@ -1,17 +1,17 @@
 'use client';
-import { Editor, EditorState, convertFromRaw, convertToRaw } from 'draft-js';
+import { EditorState, convertFromRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import { useEffect, useState } from 'react';
 
 interface ContentIdBody {
-    text: any;
+    text: string;
 }
 
 export const ContentIdBody = ({ text }: ContentIdBody) => {
     const [htmlString, setHtmlString] = useState('');
 
     useEffect(() => {
-        const markup = draftToHtml(text);
+        const markup = draftToHtml(JSON.parse(text));
         setHtmlString(markup);
     }, [text]);
 

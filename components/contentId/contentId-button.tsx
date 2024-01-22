@@ -13,18 +13,20 @@ export const ContentIdButton = ({ contentId, isAdmin }: ContentIdButton) => {
     const router = useRouter();
 
     const handleUpdate = () => {
-        router.push(`/upload/${contentId}`);
+        router.push(`/update/${contentId}`);
     };
     const handleDelete = async () => {
-        try {
-            const res = await axios.delete(`/api/content/${contentId}`);
-            if (res.status === 200) {
-                toast.success('Deleted', { position: 'top-center' });
-                router.push('/');
-                router.refresh();
+        if (window.confirm('Are you sure you want to delete this content?')) {
+            try {
+                const res = await axios.delete(`/api/content/${contentId}`);
+                if (res.status === 200) {
+                    toast.success('Deleted', { position: 'top-center' });
+                    router.push('/');
+                    router.refresh();
+                }
+            } catch (error) {
+                console.log(error);
             }
-        } catch (error) {
-            console.log(error);
         }
     };
     return (

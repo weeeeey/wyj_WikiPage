@@ -13,7 +13,6 @@ const getContent = async (contentId: string) => {
         if (!content) {
             throw new Error('Invalid data');
         }
-        content.text = JSON.parse(content.text);
         return content;
     } catch (error) {
         console.log(error);

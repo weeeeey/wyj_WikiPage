@@ -6,7 +6,6 @@ import { Input } from '../ui/input';
 
 interface UploadEditorProps {
     editorState: EditorState;
-
     updateTextDescription: (state: EditorState) => Promise<void>;
     title: string;
     updateTitle: (data: string) => void;
@@ -35,6 +34,7 @@ export const UploadEditor = ({
                     width: '100%',
                     border: '3px solid lightgray',
                     padding: '20px',
+                    backgroundColor: 'white',
                 }}
             />
         </div>

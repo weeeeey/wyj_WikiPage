@@ -11,7 +11,6 @@ export const ContentIdTitle = ({ title, timestamp }: ContentIdTitle) => {
             <h3 className="text-xl font-semibold">{title}</h3>
             <div className="font-light text-sm">
                 <span>{timeDate[0]} </span>
-                <span>{timeDate[1].slice(0, 5)}</span>
             </div>
         </div>
     );
