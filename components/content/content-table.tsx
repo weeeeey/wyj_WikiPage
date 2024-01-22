@@ -9,11 +9,13 @@ import { Upload } from '@/components/upload/upload';
 interface ContentTableProps {
     totalCount: number;
     initialContents: SafeContentList[] | [];
+    selectedPage: number;
 }
 
 export const ContentTable = ({
     totalCount,
     initialContents,
+    selectedPage,
 }: ContentTableProps) => {
     return (
         <>
@@ -22,7 +24,10 @@ export const ContentTable = ({
                 <ContentBody contents={initialContents} />
             </Table>
             <Upload />
-            <PageContent pageTotalCount={totalCount} selectedPage={1} />
+            <PageContent
+                pageTotalCount={totalCount}
+                selectedPage={selectedPage}
+            />
         </>
     );
 };

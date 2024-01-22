@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { AlignJustify, SquarePen, Trash2 } from 'lucide-react';
 import { toast } from 'react-hot-toast';
+import { cn } from '@/lib/utils';
 interface ContentIdButton {
     contentId: string;
     isAdmin: boolean;
@@ -33,21 +34,22 @@ export const ContentIdButton = ({ contentId, isAdmin }: ContentIdButton) => {
         }
     };
     return (
-        <>
-            {isAdmin && (
-                <div className="flex justify-center items-center gap-x-4">
-                    <button onClick={handeleList}>
-                        <AlignJustify className="w-6 h-6" />
-                    </button>
-
-                    <button onClick={handleUpdate}>
-                        <SquarePen className="w-6 h-6" />
-                    </button>
-                    <button onClick={handleDelete}>
-                        <Trash2 className="w-6 h-6" />
-                    </button>
-                </div>
-            )}
-        </>
+        <div className="flex justify-center items-center gap-x-4">
+            <button onClick={handeleList}>
+                <AlignJustify className="w-6 h-6" />
+            </button>
+            <button
+                onClick={handleUpdate}
+                className={cn(isAdmin ? 'block' : 'hidden')}
+            >
+                <SquarePen className="w-6 h-6" />
+            </button>
+            <button
+                onClick={handleDelete}
+                className={cn(isAdmin ? 'block' : 'hidden')}
+            >
+                <Trash2 className="w-6 h-6" />
+            </button>
+        </div>
     );
 };

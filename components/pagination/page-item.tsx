@@ -6,7 +6,6 @@ import Link from 'next/link';
 interface PageItemProps {
     selected: number;
     currentPage: number;
-    // onClick: (p: number) => void;
 }
 export const PageItem = ({ currentPage, selected }: PageItemProps) => {
     return (

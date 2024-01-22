@@ -15,12 +15,7 @@ export const PageContainer = ({
     return (
         <div className="flex justify-center gap-x-2 items-center">
             {totalPage.map((page: number) => (
-                <PageItem
-                    key={page}
-                    currentPage={page}
-                    onClick={onClick}
-                    selected={selected}
-                />
+                <PageItem key={page} currentPage={page} selected={selected} />
             ))}
         </div>
     );

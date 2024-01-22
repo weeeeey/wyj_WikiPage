@@ -5,7 +5,11 @@ export default async function MainPage() {
     const { totalCount, contents } = await getContents(1);
     return (
         <main className="mb-20">
-            <ContentTable totalCount={totalCount} initialContents={contents} />
+            <ContentTable
+                totalCount={totalCount}
+                initialContents={contents}
+                selectedPage={1}
+            />
         </main>
     );
 }
