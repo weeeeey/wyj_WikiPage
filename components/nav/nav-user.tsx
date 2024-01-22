@@ -20,9 +20,9 @@ export const NavUser = async () => {
                 />
             ) : (
                 <SignInButton>
-                    <div className="bg-white px-4 py-2 rounded-md text-sm">
+                    <button className="bg-white px-4 py-2 rounded-md text-sm">
                         로그인
-                    </div>
+                    </button>
                 </SignInButton>
             )}
         </>
