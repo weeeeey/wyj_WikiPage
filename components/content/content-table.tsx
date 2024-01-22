@@ -1,12 +1,17 @@
 import { Table } from '@/components/ui/table';
 import { ContentBody } from './content-body';
 import { ContentHead } from './content-head';
+import { SafeContentList } from '@/types';
 
-export const ContentTable = () => {
+interface ContentTableProps {
+    contents: SafeContentList[] | undefined;
+}
+
+export const ContentTable = ({ contents }: ContentTableProps) => {
     return (
         <Table>
             <ContentHead />
-            <ContentBody />
+            <ContentBody contents={contents} />
         </Table>
     );
 };

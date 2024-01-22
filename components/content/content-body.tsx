@@ -1,15 +1,17 @@
 import { TableBody } from '@/components/ui/table';
 import { ContentRow } from './content-row';
-import getContents from '@/actions/getContents';
+import { SafeContentList } from '@/types';
+
+interface ContentBodyProps {
+    contents: SafeContentList[] | undefined;
+}
 
 type ContentType = {
     id: string;
     title: string;
 };
 
-export const ContentBody = async () => {
-    const contents = await getContents();
-
+export const ContentBody = ({ contents }: ContentBodyProps) => {
     return (
         <TableBody>
             {contents?.map((content: ContentType, idx) => (

@@ -2,7 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { SquarePen, Trash2 } from 'lucide-react';
+import { AlignJustify, SquarePen, Trash2 } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 interface ContentIdButton {
     contentId: string;
@@ -12,6 +12,9 @@ interface ContentIdButton {
 export const ContentIdButton = ({ contentId, isAdmin }: ContentIdButton) => {
     const router = useRouter();
 
+    const handeleList = () => {
+        router.push('/');
+    };
     const handleUpdate = () => {
         router.push(`/update/${contentId}`);
     };
@@ -33,6 +36,10 @@ export const ContentIdButton = ({ contentId, isAdmin }: ContentIdButton) => {
         <>
             {isAdmin && (
                 <div className="flex justify-center items-center gap-x-4">
+                    <button onClick={handeleList}>
+                        <AlignJustify className="w-6 h-6" />
+                    </button>
+
                     <button onClick={handleUpdate}>
                         <SquarePen className="w-6 h-6" />
                     </button>

@@ -1,9 +1,10 @@
 import { db } from '@/lib/db';
-import axios from 'axios';
 
-const getContents = async () => {
+const getContents = async (page: number = 0, take?: number) => {
     try {
-        const res = await db.content.findMany({
+        const skip = page !== 0 ? 5 : 0;
+        const totalCount = await db.content.count();
+        const contents = await db.content.findMany({
             select: {
                 id: true,
                 title: true,
@@ -11,10 +12,16 @@ const getContents = async () => {
             orderBy: {
                 createdAt: 'desc',
             },
+            take,
+            skip: skip * page,
         });
-        return res;
+        return { totalCount, contents };
     } catch (error) {
         console.log(error);
+        return {
+            totalCount: 0,
+            contents: [],
+        };
     }
 };
 

@@ -45,11 +45,12 @@ export const Editor = ({
     };
 
     const handleSumbit = async () => {
+        const text = JSON.stringify(
+            convertToRaw(editorState.getCurrentContent())
+        );
+        const method = action === '수정' ? 'patch' : 'post';
+
         try {
-            const text = JSON.stringify(
-                convertToRaw(editorState.getCurrentContent())
-            );
-            const method = action === '수정' ? 'patch' : 'post';
             const res = await axios(`${apiUrl}`, {
                 method: method,
                 url: apiUrl,

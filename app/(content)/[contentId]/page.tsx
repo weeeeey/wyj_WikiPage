@@ -1,4 +1,5 @@
 import getContent from '@/actions/getContent';
+import getContents from '@/actions/getContents';
 import getCurrentProfile from '@/actions/getCurrentProfile';
 import { ContentIdBody } from '@/components/contentId/contentId-body';
 import { ContentIdButton } from '@/components/contentId/contentId-button';
@@ -13,8 +14,9 @@ interface ContentPageProps {
 const ContentPage = async ({ params }: ContentPageProps) => {
     const { contentId } = params;
     const content = await getContent(contentId);
+    const { contents } = await getContents();
     const profile = await getCurrentProfile();
-    if (!content) {
+    if (!content || !contents) {
         return null;
     }
 
@@ -24,7 +26,7 @@ const ContentPage = async ({ params }: ContentPageProps) => {
                 title={content.title}
                 timestamp={content.updatedAt.toISOString()}
             />
-            <ContentIdBody text={content.text} />
+            <ContentIdBody text={content.text} contents={contents} />
             <ContentIdButton
                 contentId={content.id}
                 isAdmin={profile.id === content.profileId}

@@ -3,3 +3,8 @@ export interface SafeContent {
     contentId: string;
     title: string;
 }
+
+export interface SafeContentList {
+    id: string;
+    title: string;
+}
