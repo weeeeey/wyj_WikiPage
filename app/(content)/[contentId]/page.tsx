@@ -2,7 +2,6 @@ import getContent from '@/actions/getContent';
 import getCurrentProfile from '@/actions/getCurrentProfile';
 import { ContentIdBody } from '@/components/contentId/contentId-body';
 import { ContentIdButton } from '@/components/contentId/contentId-button';
-import { ContentIdHeart } from '@/components/contentId/contentId-heart';
 import { ContentIdTitle } from '@/components/contentId/contentId-title';
 
 interface ContentPageProps {
@@ -26,7 +25,6 @@ const ContentPage = async ({ params }: ContentPageProps) => {
                 timestamp={content.updatedAt.toISOString()}
             />
             <ContentIdBody text={content.text} />
-            <ContentIdHeart likeCount={content.likeCount} />
             <ContentIdButton
                 contentId={content.id}
                 isAdmin={profile.id === content.profileId}
