@@ -3,15 +3,26 @@ import { ContentBody } from './content-body';
 import { ContentHead } from './content-head';
 import { SafeContentList } from '@/types';
 
+import { PageContent } from '@/components/pagination/page-content';
+import { Upload } from '@/components/upload/upload';
+
 interface ContentTableProps {
-    contents: SafeContentList[] | undefined;
+    totalCount: number;
+    initialContents: SafeContentList[] | [];
 }
 
-export const ContentTable = ({ contents }: ContentTableProps) => {
+export const ContentTable = ({
+    totalCount,
+    initialContents,
+}: ContentTableProps) => {
     return (
-        <Table>
-            <ContentHead />
-            <ContentBody contents={contents} />
-        </Table>
+        <>
+            <Table>
+                <ContentHead />
+                <ContentBody contents={initialContents} />
+            </Table>
+            <Upload />
+            <PageContent pageTotalCount={totalCount} selectedPage={1} />
+        </>
     );
 };

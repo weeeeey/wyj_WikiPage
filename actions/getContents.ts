@@ -1,9 +1,10 @@
 import { db } from '@/lib/db';
 
-const getContents = async (page: number = 0, take?: number) => {
+const getContents = async (page: number = 0) => {
     try {
-        const skip = page !== 0 ? 5 : 0;
         const totalCount = await db.content.count();
+        const skip = page === 0 ? 0 : 5;
+        const take = page === 0 ? totalCount : 5;
         const contents = await db.content.findMany({
             select: {
                 id: true,
@@ -13,7 +14,7 @@ const getContents = async (page: number = 0, take?: number) => {
                 createdAt: 'desc',
             },
             take,
-            skip: skip * page,
+            skip: skip * (page - 1),
         });
         return { totalCount, contents };
     } catch (error) {

@@ -3,7 +3,7 @@ import { ContentRow } from './content-row';
 import { SafeContentList } from '@/types';
 
 interface ContentBodyProps {
-    contents: SafeContentList[] | undefined;
+    contents: SafeContentList[] | [];
 }
 
 type ContentType = {

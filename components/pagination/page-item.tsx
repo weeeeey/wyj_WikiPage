@@ -1,21 +1,23 @@
+'use client';
 import React from 'react';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 interface PageItemProps {
     selected: number;
     currentPage: number;
-    onClick: (p: number) => void;
+    // onClick: (p: number) => void;
 }
-export const PageItem = ({ currentPage, onClick, selected }: PageItemProps) => {
+export const PageItem = ({ currentPage, selected }: PageItemProps) => {
     return (
-        <button
-            onClick={() => onClick(currentPage)}
+        <Link
+            href={`/p/${currentPage}`}
             className={cn(
                 'px-3 py-1 text-lg',
                 selected === currentPage && ' bg-slate-300 rounded-lg '
             )}
         >
             {currentPage}
-        </button>
+        </Link>
     );
 };

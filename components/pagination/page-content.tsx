@@ -1,19 +1,17 @@
 'use client';
-import { SafeContentList } from '@/types';
 import { useEffect, useState } from 'react';
 import { PageItem } from './page-item';
 
 interface PageContentProps {
-    contents: SafeContentList[] | undefined;
     pageTotalCount: number;
+    selectedPage: number;
 }
 
-export function PageContent({ contents, pageTotalCount }: PageContentProps) {
-    const [selected, setSelected] = useState(1);
+export function PageContent({
+    pageTotalCount,
+    selectedPage,
+}: PageContentProps) {
     const [totalPage, setTotalPage] = useState([1]);
-    const onClick = (page: number) => {
-        setSelected(page);
-    };
     useEffect(() => {
         if (pageTotalCount) {
             const totalLength = Math.ceil(pageTotalCount / 5);
@@ -32,8 +30,7 @@ export function PageContent({ contents, pageTotalCount }: PageContentProps) {
                 <PageItem
                     key={page}
                     currentPage={page}
-                    onClick={onClick}
-                    selected={selected}
+                    selected={selectedPage}
                 />
             ))}
         </div>
