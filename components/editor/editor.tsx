@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { UploadEditor } from '../upload/upload-editor';
 import { EditorButton } from './editor-button';
-
+import { Loading } from '../loading';
 interface EditorProps {
     initialText?: string;
     initialTitle?: string;
@@ -22,6 +22,7 @@ export const Editor = ({
     action,
 }: EditorProps) => {
     const [isMounted, setIsMounted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
     const [title, setTitle] = useState(initialTitle);
     const router = useRouter();
@@ -49,7 +50,7 @@ export const Editor = ({
             convertToRaw(editorState.getCurrentContent())
         );
         const method = action === '수정' ? 'patch' : 'post';
-
+        setIsLoading(true);
         try {
             const res = await axios(`${apiUrl}`, {
                 method: method,
@@ -66,8 +67,13 @@ export const Editor = ({
             }
         } catch (error) {
             console.log(error);
+        } finally {
+            setIsLoading(false);
         }
     };
+    if (isLoading) {
+        return <Loading />;
+    }
     return (
         <div>
             {isMounted && (

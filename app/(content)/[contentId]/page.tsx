@@ -2,7 +2,7 @@ import getContent from '@/actions/getContent';
 import getContents from '@/actions/getContents';
 import getCurrentProfile from '@/actions/getCurrentProfile';
 import { ContentIdBody } from '@/components/contentId/contentId-body';
-import { ContentIdButton } from '@/components/contentId/contentId-button';
+import { ContentIdButton } from '@/components/contentId/contentId-buttons';
 import { ContentIdTitle } from '@/components/contentId/contentId-title';
 
 interface ContentPageProps {
