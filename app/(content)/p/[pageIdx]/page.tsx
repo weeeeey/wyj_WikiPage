@@ -1,6 +1,11 @@
+'use client';
 import getContents from '@/actions/getContents';
 import { ContentTable } from '@/components/content/content-table';
+import { Dummy } from '@/components/dummy';
+import { usePageQuery } from '@/lib/use-page-query';
+
 import React from 'react';
+import PageLoading from './loading';
 
 interface PageIdxPageProps {
     params: {
@@ -8,9 +13,17 @@ interface PageIdxPageProps {
     };
 }
 
-const PageIdxPage = async ({ params }: PageIdxPageProps) => {
+const PageIdxPage = ({ params }: PageIdxPageProps) => {
     const { pageIdx } = params;
-    const { contents, totalCount } = await getContents(parseInt(pageIdx));
+    const { totalCount, contents, isError, isLoading } = usePageQuery({
+        pageIdx,
+    });
+    if (isLoading) {
+        return <PageLoading />;
+    }
+    if (isError) {
+        return <div>Error</div>;
+    }
     return (
         <main className="mb-20">
             <ContentTable

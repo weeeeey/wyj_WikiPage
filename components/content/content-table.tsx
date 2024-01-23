@@ -4,7 +4,7 @@ import { ContentHead } from './content-head';
 import { SafeContentList } from '@/types';
 
 import { PageContent } from '@/components/pagination/page-content';
-import { Upload } from '@/components/upload/upload';
+import { UploadButton } from '@/components/upload/upload';
 
 interface ContentTableProps {
     totalCount: number;
@@ -23,7 +23,7 @@ export const ContentTable = ({
                 <ContentHead />
                 <ContentBody contents={initialContents} />
             </Table>
-            <Upload />
+            <UploadButton />
             <PageContent
                 pageTotalCount={totalCount}
                 selectedPage={selectedPage}
