@@ -1,11 +1,9 @@
 'use client';
-import getContents from '@/actions/getContents';
 import { ContentTable } from '@/components/content/content-table';
-import { Dummy } from '@/components/dummy';
+import { Loading } from '@/components/loading';
 import { usePageQuery } from '@/lib/use-page-query';
 
 import React from 'react';
-import PageLoading from './loading';
 
 interface PageIdxPageProps {
     params: {
@@ -19,7 +17,7 @@ const PageIdxPage = ({ params }: PageIdxPageProps) => {
         pageIdx,
     });
     if (isLoading) {
-        return <PageLoading />;
+        return <Loading />;
     }
     if (isError) {
         return <div>Error</div>;
