@@ -5,6 +5,9 @@ import { useRouter } from 'next/navigation';
 import { AlignJustify, SquarePen, Trash2 } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import { cn } from '@/lib/utils';
+import { ContentIdBtn } from './contentId-btn';
+import { profile } from 'console';
+
 interface ContentIdButton {
     contentId: string;
     isAdmin: boolean;
@@ -13,16 +16,10 @@ interface ContentIdButton {
 export const ContentIdButton = ({ contentId, isAdmin }: ContentIdButton) => {
     const router = useRouter();
 
-    const handeleList = () => {
-        router.push('/');
-    };
-    const handleUpdate = () => {
-        router.push(`/update/${contentId}`);
-    };
-    const handleDelete = async () => {
+    const handleDelete = async (url: string) => {
         if (window.confirm('Are you sure you want to delete this content?')) {
             try {
-                const res = await axios.delete(`/api/content/${contentId}`);
+                const res = await axios.delete(url);
                 if (res.status === 200) {
                     toast.success('Deleted', { position: 'top-center' });
                     router.push('/');
@@ -35,21 +32,18 @@ export const ContentIdButton = ({ contentId, isAdmin }: ContentIdButton) => {
     };
     return (
         <div className="flex justify-center items-center gap-x-4">
-            <button onClick={handeleList}>
-                <AlignJustify className="w-6 h-6" />
-            </button>
-            <button
-                onClick={handleUpdate}
-                className={cn(isAdmin ? 'block' : 'hidden')}
-            >
-                <SquarePen className="w-6 h-6" />
-            </button>
-            <button
-                onClick={handleDelete}
-                className={cn(isAdmin ? 'block' : 'hidden')}
-            >
-                <Trash2 className="w-6 h-6" />
-            </button>
+            <ContentIdBtn icon={AlignJustify} isAdmin={true} url="/" />
+            <ContentIdBtn
+                icon={SquarePen}
+                isAdmin={isAdmin}
+                url={`/update/${contentId}`}
+            />
+            <ContentIdBtn
+                icon={Trash2}
+                isAdmin={isAdmin}
+                url={`/api/content/${contentId}`}
+                handleClick={handleDelete}
+            />
         </div>
     );
 };
