@@ -4,9 +4,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { AlignJustify, SquarePen, Trash2 } from 'lucide-react';
 import { toast } from 'react-hot-toast';
-import { cn } from '@/lib/utils';
 import { ContentIdBtn } from './contentId-btn';
-import { profile } from 'console';
 
 interface ContentIdButton {
     contentId: string;
