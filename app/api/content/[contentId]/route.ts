@@ -2,6 +2,28 @@ import getCurrentProfile from '@/actions/getCurrentProfile';
 import { db } from '@/lib/db';
 import { NextResponse } from 'next/server';
 
+export async function GET(
+    req: Request,
+    { params }: { params: { contentId: string } }
+) {
+    try {
+        const { contentId } = params;
+
+        const content = await db.content.findUnique({
+            where: {
+                id: contentId,
+            },
+        });
+        if (!content) {
+            return new NextResponse('invalid data', { status: 400 });
+        }
+        return NextResponse.json(content);
+    } catch (error) {
+        console.log(error);
+        return new NextResponse('internal error', { status: 500 });
+    }
+}
+
 export async function PATCH(
     req: Request,
     { params }: { params: { contentId: string } }

@@ -45,6 +45,25 @@ export const Editor = ({
         setTitle(data);
     };
 
+    const invalidDate = () => {
+        let wanrning = '';
+        let isAvail = true;
+        const textLenght = editorState
+            .getCurrentContent()
+            .getPlainText().length;
+        if (title.length <= 0) {
+            wanrning = '제목을 입력하세요';
+            isAvail = false;
+        } else if (textLenght <= 0) {
+            wanrning = '텍스트를 입력하세요';
+            isAvail = false;
+        }
+        return {
+            wanrning,
+            isAvail,
+        };
+    };
+
     const handleSumbit = async () => {
         const text = JSON.stringify(
             convertToRaw(editorState.getCurrentContent())
@@ -52,6 +71,11 @@ export const Editor = ({
         const method = action === '수정' ? 'patch' : 'post';
         setIsLoading(true);
         try {
+            const { isAvail, wanrning } = invalidDate();
+            if (!isAvail) {
+                window.alert(wanrning);
+                throw new Error('invalid data');
+            }
             const res = await axios(`${apiUrl}`, {
                 method: method,
                 url: apiUrl,
