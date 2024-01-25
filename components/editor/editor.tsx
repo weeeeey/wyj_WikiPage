@@ -45,6 +45,10 @@ export const Editor = ({
         setTitle(data);
     };
 
+    useEffect(() => {
+        console.log(editorState.getSelection());
+    }, [editorState]);
+
     const invalidDate = () => {
         let wanrning = '';
         let isAvail = true;
