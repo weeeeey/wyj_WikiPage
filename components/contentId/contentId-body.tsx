@@ -13,6 +13,7 @@ export const ContentIdBody = ({ text, contents }: ContentIdBody) => {
 
     useEffect(() => {
         const parsedText = JSON.parse(text);
+
         const replacedText = contents.reduce((acc, { id, title }) => {
             const link = `<a href="/${id}" style="text-decoration: underline; color: blue;">${title}</a>`;
             return acc.replace(new RegExp(title, 'g'), link);
